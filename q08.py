@@ -17,3 +17,21 @@
 ## ('9', ['A', 'B', 'C', 'E'])
 ##
 ##
+import csv
+with open('data3.csv', 'r') as f:
+    f = csv.reader(f, delimiter=',')#, quoting=csv.QUOTE_NONNUMERIC
+    letras={}
+    for r in f:
+        lista=[r[0]]        
+        ya_esta=False
+        for valor in letras.keys():
+            if (valor==r[1]):
+                ya_esta=True
+                letras[r[1]].append(r[0])
+        if (ya_esta==False):
+            letras[r[1]]=[0]
+            letras[r[1]][0]=r[0]
+
+    for letra in sorted(letras):
+        tupla=letra,sorted(letras[letra])
+        print (tupla)

@@ -10,3 +10,13 @@
 ## E,11
 ## E,16
 ##
+import csv
+with open('data3.csv', 'r') as f:
+    f = csv.reader(f, delimiter=',')#, quoting=csv.QUOTE_NONNUMERIC
+    for r in f:
+        letra=r[4].split(';')
+        cont=0
+        for l in letra:  
+            valor=l.split(':')
+            cont+=int(valor[1])
+        print(r[0]+','+str(cont))

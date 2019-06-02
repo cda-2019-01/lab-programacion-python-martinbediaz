@@ -15,3 +15,21 @@
 ## jjj,18
 ##
 ##
+import csv
+with open('data3.csv', 'r') as f:
+    f = csv.reader(f, delimiter=',')#, quoting=csv.QUOTE_NONNUMERIC
+    letras={}
+    for r in f:
+        lineas=r[4].split(';')
+        for l in lineas:
+            valores=l.split(':')
+            ya_esta=False 
+            for letra in letras.keys():             
+                if(letra==valores[0]):
+                    ya_esta=True
+                    aux=letras[valores[0]]+1
+                    letras[valores[0]]=aux                     
+            if (ya_esta==False):
+                letras[valores[0]]=1                   
+    for letra in sorted(letras):
+        print (letra+","+str(letras[letra]))
